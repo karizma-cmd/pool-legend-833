@@ -1,0 +1,10 @@
+{
+  "name": "Remix Remix Remix Remix Remix Remix Remix Remix Pool Legends - 3D Offline Billiards \u0026 Hotspot Multiplayer",
+  "description": "High-fidelity 3D mobile billiards featuring realistic physics, intelligent offline AI, and offline hotspot multiplayer over local Wi-Fi.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

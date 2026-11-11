@@ -1,0 +1,104 @@
+name: Build iOS App (IPA & Xcode Archive)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      build_config:
+        description: 'Xcode Configuration (Release or Debug)'
+        required: true
+        default: 'Release'
+        type: choice
+        options:
+          - Release
+          - Debug
+
+jobs:
+  build-ios:
+    name: Build & Package iOS App (IPA)
+    runs-on: macos-latest
+
+    steps:
+      - name: 1. Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 2. Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 3. Install Node.js Dependencies
+        run: |
+          npm install --legacy-peer-deps --no-audit --no-fund
+
+      - name: 4. Build Web App (Vite)
+        run: |
+          npm run build
+
+      - name: 5. Sync Capacitor iOS Platform
+        run: |
+          npx cap sync ios
+
+      - name: 6. Resolve Swift Packages (SPM)
+        run: |
+          cd ios/App
+          xcodebuild -resolvePackageDependencies -project App.xcodeproj
+
+      - name: 7. Build Xcode Archive
+        run: |
+          mkdir -p build-output
+          CONFIG="${{ github.event.inputs.build_config || 'Release' }}"
+          echo "Building Xcode Archive with configuration: $CONFIG"
+          
+          xcodebuild archive \
+            -project ios/App/App.xcodeproj \
+            -scheme App \
+            -configuration "$CONFIG" \
+            -destination 'generic/platform=iOS' \
+            -archivePath build-output/PoolLegends.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            COMPILER_INDEX_STORE_ENABLE=NO
+
+      - name: 8. Package App into Installable IPA
+        run: |
+          cd build-output
+          mkdir -p Payload
+          
+          # Find the built .app bundle inside the xcarchive
+          APP_PATH=$(find PoolLegends.xcarchive/Products/Applications -name "*.app" -type d | head -n 1)
+          if [ -z "$APP_PATH" ]; then
+            echo "Error: Could not find .app bundle in archive!"
+            exit 1
+          fi
+          
+          echo "Found app bundle at: $APP_PATH"
+          cp -R "$APP_PATH" Payload/
+          
+          # Package Payload folder into standard iOS .ipa file
+          zip -qr "PoolLegends-3D-v1.0-iOS-unsigned.ipa" Payload
+          
+          # Also package xcarchive for opening in Xcode on macOS
+          zip -qr "PoolLegends-3D-Xcode-Archive.zip" PoolLegends.xcarchive
+          
+          echo "Build artifacts packaged successfully:"
+          ls -lh *.ipa *.zip
+
+      - name: 9. Upload iOS IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PoolLegends-3D-iOS-IPA
+          path: build-output/PoolLegends-3D-v1.0-iOS-unsigned.ipa
+          retention-days: 30
+
+      - name: 10. Upload Xcode Archive Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PoolLegends-3D-Xcode-Archive
+          path: build-output/PoolLegends-3D-Xcode-Archive.zip
+          retention-days: 30

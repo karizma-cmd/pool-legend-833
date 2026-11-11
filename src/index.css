@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  body {
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+}
+
+/* Custom glow and retro pool hall utilities */
+.text-shadow-neon {
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.7), 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.text-shadow-gold {
+  text-shadow: 0 0 10px rgba(234, 179, 8, 0.8), 0 0 20px rgba(202, 138, 4, 0.5);
+}
+
+.font-mono-numbers {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,124 @@
+# GAME DEVELOPMENT PROMPT — POOL LEGENDS
+
+Create a complete, high-quality 3D mobile billiards game inspired by the gameplay of 8 Ball Pool, with original branding, graphics, animations, and features.
+
+**Game Title: POOL LEGENDS**
+
+## 1. Core Gameplay
+- Realistic 3D billiards physics.
+- Classic 8-Ball Pool rules.
+- Smooth and realistic ball movement, collisions, spin, friction, and cushion physics.
+- Accurate aiming system with trajectory prediction lines.
+- Drag-and-release shooting controls.
+- Adjustable shooting power.
+- Realistic ball and pocket sounds.
+- Smooth camera animations and cinematic shots.
+
+## 2. OFFLINE LOCAL MULTIPLAYER — MOST IMPORTANT FEATURE
+
+The game must work completely without an internet connection.
+
+Create a local multiplayer system using Wi-Fi Direct, local Wi-Fi, or Android hotspot connections.
+
+Features:
+- Player 1 creates a private room without internet.
+- Player 2 connects by joining Player 1's Wi-Fi hotspot.
+- Automatically discover the host on the local network when possible.
+- Allow joining with a simple room code or QR code.
+- No internet, no external server, and no mobile data required.
+- Synchronize shots, ball positions, turns, scores, and game state between both devices.
+- Support reconnecting if the connection temporarily drops.
+- Make the connection process extremely easy for non-technical players.
+
+One phone acts as the host and the other as the guest.
+
+## 3. SMART OFFLINE AI OPPONENTS
+
+Create intelligent AI opponents that work entirely offline.
+
+Include five difficulty levels:
+- Beginner
+- Easy
+- Normal
+- Professional
+- Legend
+
+Each AI opponent should have different playing styles, aiming accuracy, tactical decisions, and personality.
+
+Add random AI opponents with different names, avatars, and skill levels.
+
+The AI must understand billiards rules, choose strategic shots, avoid fouls, and improve the challenge as difficulty increases.
+
+## 4. EXCITING GAME MODES
+
+- Classic 8-Ball.
+- 9-Ball.
+- Practice Mode.
+- Play Against AI.
+- Local Hotspot Multiplayer.
+- Tournament Mode.
+- Time Challenge.
+- Trick Shot Challenges.
+
+## 5. PROGRESSION AND REWARDS
+
+- Coins earned by winning matches.
+- Unlockable pool cues.
+- Custom table designs.
+- Different ball skins.
+- Player avatars and profile customization.
+- Daily offline challenges.
+- Achievements and trophies.
+- Offline ranking and statistics.
+
+All rewards and progression must work without internet.
+
+## 6. GRAPHICS AND VISUAL EFFECTS
+
+- High-quality realistic 3D graphics.
+- Beautiful pool halls and cinematic lighting.
+- Neon and luxury billiards tables.
+- Realistic reflections and shadows.
+- Smooth 60 FPS gameplay target.
+- Impressive pocket animations.
+- Powerful visual effects for winning shots.
+- Original sound effects and background music.
+
+## 7. USER INTERFACE
+
+Create a modern, beautiful, easy-to-use mobile interface.
+
+Main menu:
+- Play Offline
+- Play with Friend (Hotspot)
+- Play Against AI
+- Tournaments
+- Practice
+- Shop
+- Player Profile
+- Settings
+
+Make the multiplayer connection process simple:
+1. Host presses Create Room.
+2. Host activates their mobile hotspot if necessary.
+3. Friend connects to the hotspot.
+4. Both players open the game.
+5. Friend presses Join Room.
+6. The match starts!
+
+## 8. TECHNICAL REQUIREMENTS
+
+- Android-first development.
+- Fully playable offline.
+- No mandatory login.
+- No mandatory advertisements.
+- No online server dependency.
+- Save progress locally.
+- Optimize for low-end and mid-range Android phones.
+- Use efficient 3D rendering and physics.
+- Handle network disconnections gracefully.
+- Use a reliable local multiplayer networking architecture.
+
+IMPORTANT: Do not create a static prototype or a simple visual demo. Build a fully functional, playable game with working billiards physics, intelligent offline AI, and real local multiplayer communication between two separate Android devices.
+
+The offline hotspot multiplayer feature is the highest priority.
